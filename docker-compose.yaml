@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mongo-branch:
+    image: mongo:latest
+    container_name: mongo-branch
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: chistito
+      MONGO_INITDB_ROOT_PASSWORD: chistito12
+  branchapp:
+    image: branch:0.1
+    depends_on:
+      - mongo-branch
+    container_name: branchapp
+    ports:
+      - 9001:9001
+    build: .
